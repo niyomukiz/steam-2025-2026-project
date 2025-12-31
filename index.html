@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASYV STEAM Exhibition Hub</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-green: #7cb342;
+        --primary-orange: #ff6f00;
+        --white: #ffffff;
+        --light-bg: #fafafa;
+        --text-dark: #212121;
+        --text-gray: #757575;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        overflow-x: hidden;
+        background: var(--white);
+        color: var(--text-dark);
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: var(--white);
+        padding: 1.5rem 5%;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .nav-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo-img {
+        height: 50px;
+        width: auto;
+      }
+
+      .logo-text {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        letter-spacing: 1px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--text-dark);
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-green);
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--white);
+        padding-top: 80px;
+      }
+
+      .hero-content {
+        text-align: center;
+        max-width: 900px;
+        padding: 0 5%;
+      }
+
+      .hero-title {
+        font-size: 7rem;
+        font-weight: 900;
+        margin-bottom: 2rem;
+        letter-spacing: 10px;
+        line-height: 1;
+      }
+
+      .letter-s {
+        color: var(--primary-orange);
+      }
+      .letter-t {
+        color: var(--primary-green);
+      }
+      .letter-e {
+        color: var(--primary-orange);
+      }
+      .letter-a {
+        color: var(--primary-green);
+      }
+      .letter-m {
+        color: var(--primary-orange);
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+        color: var(--text-gray);
+        margin-bottom: 3rem;
+        font-weight: 500;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+
+      .steam-words {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .steam-word {
+        padding: 1rem 2rem;
+        background: var(--white);
+        border: 2px solid var(--primary-green);
+        border-radius: 50px;
+        color: var(--primary-green);
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      .steam-word:hover {
+        background: var(--primary-green);
+        color: var(--white);
+        transform: translateY(-3px);
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+      }
+
+      .scroll-arrow {
+        width: 30px;
+        height: 50px;
+        border: 2px solid var(--primary-green);
+        border-radius: 20px;
+        position: relative;
+      }
+
+      .scroll-arrow::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 6px;
+        height: 6px;
+        background: var(--primary-green);
+        border-radius: 50%;
+        animation: scroll-down 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(10px);
+        }
+      }
+
+      @keyframes scroll-down {
+        0% {
+          top: 10px;
+          opacity: 1;
+        }
+        100% {
+          top: 30px;
+          opacity: 0;
+        }
+      }
+
+      /* Registration Section */
+      .registration-section {
+        min-height: 100vh;
+        padding: 120px 5% 80px 5%;
+        background: var(--light-bg);
+      }
+
+      .section-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title {
+        font-size: 3.5rem;
+        color: var(--text-dark);
+        margin-bottom: 20px;
+        font-weight: 900;
+      }
+
+      .section-title-highlight {
+        color: var(--primary-green);
+      }
+
+      .section-description {
+        font-size: 1.2rem;
+        color: var(--text-gray);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .form-card {
+        width: 100%;
+        max-width: 950px;
+        margin: 0 auto;
+        background: var(--white);
+        border-radius: 20px;
+        padding: 60px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      }
+
+      .form-section {
+        margin-bottom: 50px;
+      }
+
+      .form-section-title {
+        font-size: 1.8rem;
+        color: var(--text-dark);
+        margin-bottom: 30px;
+        font-weight: 700;
+        padding-bottom: 15px;
+        border-bottom: 3px solid var(--primary-green);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-bottom: 25px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-group.full-width {
+        grid-column: 1 / -1;
+      }
+
+      .form-group label {
+        font-size: 1rem;
+        color: var(--text-dark);
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        padding: 16px 20px;
+        background: var(--white);
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        color: var(--text-dark);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary-green);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .form-hint {
+        font-size: 0.9rem;
+        color: var(--text-gray);
+        margin-top: 8px;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 20px;
+        justify-content: flex-end;
+        margin-top: 50px;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        padding: 18px 45px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        letter-spacing: 1px;
+      }
+
+      .btn-primary {
+        background: var(--primary-green);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background: #689f38;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(124, 179, 66, 0.3);
+      }
+
+      .btn-secondary {
+        background: var(--white);
+        color: var(--primary-green);
+        border: 2px solid var(--primary-green);
+      }
+
+      .btn-secondary:hover {
+        background: var(--light-bg);
+        transform: translateY(-3px);
+      }
+
+      .success-message {
+        text-align: center;
+        padding: 50px;
+        background: var(--white);
+        border: 3px solid var(--primary-green);
+        border-radius: 20px;
+        margin-top: 40px;
+        animation: slideIn 0.6s ease;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .success-icon {
+        font-size: 5rem;
+        color: var(--primary-green);
+        margin-bottom: 20px;
+      }
+
+      .success-message h4 {
+        font-size: 2rem;
+        color: var(--text-dark);
+        margin-bottom: 15px;
+        font-weight: 800;
+      }
+
+      .success-message p {
+        font-size: 1.2rem;
+        color: var(--text-gray);
+      }
+      /* Projects Section */
+      .projects-section {
+        min-height: 100vh;
+        padding: 120px 5% 80px 5%;
+        background: var(--white);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .project-card {
+        background: var(--white);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s ease;
+        cursor: pointer;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      }
+
+      .project-image-container {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+      }
+
+      .project-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .project-card:hover .project-image {
+        transform: scale(1.1);
+      }
+
+      .project-year-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary-orange);
+        color: var(--white);
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
+      }
+
+      .project-content {
+        padding: 25px;
+      }
+
+      .project-title {
+        font-size: 1.4rem;
+        color: var(--text-dark);
+        margin-bottom: 12px;
+        font-weight: 800;
+        line-height: 1.3;
+      }
+
+      .project-desc {
+        font-size: 0.95rem;
+        color: var(--text-gray);
+        line-height: 1.6;
+      }
+      /* About Section */
+      .about-section {
+        min-height: 100vh;
+        padding: 120px 5% 80px 5%;
+        background: var(--white);
+      }
+
+      .about-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Mission & Vision */
+      .mission-vision-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 80px;
+      }
+
+      .mission-card,
+      .vision-card {
+        background: var(--light-bg);
+        padding: 50px 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+      }
+
+      .mission-card:hover,
+      .vision-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .mv-icon {
+        font-size: 4rem;
+        margin-bottom: 20px;
+      }
+
+      .mv-title {
+        font-size: 2rem;
+        color: var(--text-dark);
+        margin-bottom: 20px;
+        font-weight: 800;
+      }
+
+      .mv-text {
+        font-size: 1.05rem;
+        color: var(--text-gray);
+        line-height: 1.8;
+      }
+
+      /* ASYV Story */
+      .asyv-story {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 50px;
+        margin-bottom: 80px;
+        align-items: center;
+      }
+
+      .story-title {
+        font-size: 2.2rem;
+        color: var(--text-dark);
+        margin-bottom: 25px;
+        font-weight: 800;
+      }
+
+      .story-text {
+        font-size: 1.05rem;
+        color: var(--text-gray);
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      .story-image {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .story-image:hover .about-img {
+        transform: scale(1.05);
+      }
+
+      /* Statistics */
+      .stats-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin-bottom: 80px;
+      }
+
+      .stat-card {
+        background: linear-gradient(135deg, var(--primary-green), #689f38);
+        padding: 40px 30px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(124, 179, 66, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(124, 179, 66, 0.4);
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        color: var(--white);
+        font-weight: 900;
+        margin-bottom: 10px;
+      }
+
+      .stat-label {
+        font-size: 1rem;
+        color: var(--white);
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      /* Core Values */
+      .values-section {
+        margin-bottom: 80px;
+      }
+
+      .values-title {
+        font-size: 2.5rem;
+        color: var(--text-dark);
+        margin-bottom: 50px;
+        font-weight: 800;
+        text-align: center;
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 35px;
+      }
+
+      .value-item {
+        background: var(--light-bg);
+        padding: 35px 30px;
+        border-radius: 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .value-item:hover {
+        border-color: var(--primary-green);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+      }
+
+      .value-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+      }
+
+      .value-name {
+        font-size: 1.5rem;
+        color: var(--text-dark);
+        margin-bottom: 12px;
+        font-weight: 800;
+      }
+
+      .value-desc {
+        font-size: 0.95rem;
+        color: var(--text-gray);
+        line-height: 1.6;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        background: var(--light-bg);
+        padding: 60px 50px;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+      }
+
+      .contact-title {
+        font-size: 2.5rem;
+        color: var(--text-dark);
+        margin-bottom: 40px;
+        font-weight: 800;
+        text-align: center;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: var(--white);
+        padding: 30px;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+      }
+
+      .contact-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .contact-icon {
+        font-size: 2.5rem;
+        flex-shrink: 0;
+      }
+
+      .contact-details {
+        flex: 1;
+      }
+
+      .contact-label {
+        font-size: 1.1rem;
+        color: var(--primary-green);
+        margin-bottom: 5px;
+        font-weight: 700;
+      }
+
+      .contact-info {
+        font-size: 1rem;
+        color: var(--text-gray);
+        font-weight: 500;
+      }
+
+      /* Responsive for About Section */
+      @media (max-width: 1200px) {
+        .stats-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .values-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 992px) {
+        .mission-vision-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .asyv-story {
+          grid-template-columns: 1fr;
+          gap: 35px;
+        }
+
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .stats-container {
+          grid-template-columns: 1fr;
+        }
+
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-section {
+          padding: 40px 25px;
+        }
+
+        .mv-title,
+        .story-title,
+        .values-title,
+        .contact-title {
+          font-size: 1.8rem;
+        }
+
+        .mission-card,
+        .vision-card {
+          padding: 35px 25px;
+        }
+
+        .stat-number {
+          font-size: 2.5rem;
+        }
+      }
+      /* Resources Section */
+      .resources-section {
+        min-height: 100vh;
+        padding: 120px 5% 80px 5%;
+        background: var(--white);
+      }
+
+      .subsection-title {
+        font-size: 2.5rem;
+        color: var(--text-dark);
+        margin-bottom: 40px;
+        font-weight: 800;
+        text-align: center;
+      }
+
+      /* STEAM Guiding Book */
+      .guiding-book-container {
+        margin-bottom: 100px;
+      }
+
+      .book-card {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 50px;
+        background: var(--light-bg);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      }
+
+      .book-cover {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+      }
+
+      .book-cover:hover {
+        transform: translateY(-10px) rotate(-2deg);
+      }
+
+      .book-image {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .book-overlay {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+
+      .book-badge {
+        background: var(--primary-orange);
+        color: var(--white);
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .book-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .book-title {
+        font-size: 2.5rem;
+        color: var(--text-dark);
+        margin-bottom: 20px;
+        font-weight: 800;
+        line-height: 1.2;
+      }
+
+      .book-description {
+        font-size: 1.1rem;
+        color: var(--text-gray);
+        line-height: 1.8;
+        margin-bottom: 30px;
+      }
+
+      .book-features {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 35px;
+      }
+
+      .book-feature {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1rem;
+        color: var(--text-dark);
+        font-weight: 600;
+      }
+
+      .feature-icon {
+        font-size: 1.5rem;
+      }
+
+      .btn-read-book {
+        display: inline-block;
+        padding: 18px 45px;
+        background: var(--primary-green);
+        color: var(--white);
+        text-decoration: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        text-align: center;
+        align-self: flex-start;
+      }
+
+      .btn-read-book:hover {
+        background: #689f38;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(124, 179, 66, 0.3);
+      }
+
+      /* Departments */
+      .departments-container {
+        margin-top: 80px;
+      }
+
+      .departments-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .department-card {
+        background: var(--light-bg);
+        border-radius: 20px;
+        padding: 40px 35px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+      }
+
+      .department-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .department-header {
+        text-align: center;
+        margin-bottom: 25px;
+      }
+
+      .department-icon {
+        font-size: 4rem;
+        margin-bottom: 15px;
+      }
+
+      .department-name {
+        font-size: 1.8rem;
+        color: var(--text-dark);
+        font-weight: 800;
+        margin-bottom: 5px;
+      }
+
+      .department-subtitle {
+        font-size: 0.95rem;
+        color: var(--text-gray);
+        font-weight: 600;
+        margin-top: 5px;
+      }
+
+      .department-description {
+        font-size: 1rem;
+        color: var(--text-gray);
+        line-height: 1.6;
+        margin-bottom: 25px;
+        text-align: center;
+      }
+
+      .department-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .dept-input,
+      .dept-textarea {
+        padding: 14px 18px;
+        background: var(--white);
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        color: var(--text-dark);
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+
+      .dept-input:focus,
+      .dept-textarea:focus {
+        outline: none;
+        border-color: var(--primary-green);
+      }
+
+      .dept-textarea {
+        resize: vertical;
+      }
+
+      .btn-send-message {
+        padding: 14px 30px;
+        background: var(--primary-green);
+        color: var(--white);
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        letter-spacing: 1px;
+      }
+
+      .btn-send-message:hover {
+        background: #689f38;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(124, 179, 66, 0.3);
+      }
+
+      .message-status {
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: 600;
+        margin-top: 15px;
+        animation: slideIn 0.4s ease;
+      }
+
+      .message-status.success {
+        background: #e8f5e9;
+        color: #2e7d32;
+        border: 2px solid #4caf50;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 4rem;
+          letter-spacing: 5px;
+        }
+
+        .nav-links {
+          gap: 1.5rem;
+        }
+
+        .nav-links a {
+          font-size: 0.9rem;
+        }
+
+        .form-card {
+          padding: 35px 25px;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .section-title {
+          font-size: 2.5rem;
+        }
+
+        .form-actions {
+          flex-direction: column;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+          width: 100%;
+        }
+
+        .logo-text {
+          display: none;
+        }
+
+        .book-card {
+          grid-template-columns: 1fr;
+          padding: 30px 20px;
+          gap: 30px;
+        }
+
+        .book-image {
+          height: 400px;
+        }
+
+        .book-title {
+          font-size: 2rem;
+        }
+
+        .book-features {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .departments-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .subsection-title {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-content">
+        <div class="logo-container">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/5a820ae0e45a7c13e22de06c/1518472391070-U0F8GNKD9IMNB07M4AWY/Agahozo+Shalom+Logo.png"
+            alt="ASYV Logo"
+            class="logo-img"
+          />
+          <span class="logo-text">STEAM HUB</span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#register">Register Project</a></li>
+          <li><a href="#projects">Recent Projects</a></li>
+          <li><a href="#resources">Resources</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span class="letter-s">S</span><span class="letter-t">T</span
+          ><span class="letter-e">E</span><span class="letter-a">A</span
+          ><span class="letter-m">M</span>
+        </h1>
+        <p class="hero-subtitle">Agahozo-Shalom Youth Village</p>
+        <div class="steam-words">
+          <div class="steam-word">Science</div>
+          <div class="steam-word">Technology</div>
+          <div class="steam-word">Engineering</div>
+          <div class="steam-word">Arts</div>
+          <div class="steam-word">Mathematics</div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+    <!-- About Section -->
+    <section class="about-section" id="about">
+      <div class="section-container">
+        <div class="section-header">
+          <h2 class="section-title">
+            About <span class="section-title-highlight">STEAM Hub</span>
+          </h2>
+          <p class="section-description">
+            Empowering young minds through innovation and creativity
+          </p>
+        </div>
+
+        <!-- Mission & Vision -->
+        <div class="about-content">
+          <div class="mission-vision-grid">
+            <div class="mission-card">
+              <div class="mv-icon">🎯</div>
+              <h3 class="mv-title">Our Mission</h3>
+              <p class="mv-text">
+                To foster a culture of innovation and creativity by providing
+                students at Agahozo-Shalom Youth Village with opportunities to
+                explore, experiment, and excel in Science, Technology,
+                Engineering, Arts, and Mathematics. We believe every student has
+                the potential to create solutions that transform communities.
+              </p>
+            </div>
+
+            <div class="vision-card">
+              <div class="mv-icon">🌟</div>
+              <h3 class="mv-title">Our Vision</h3>
+              <p class="mv-text">
+                To be Rwanda's leading STEAM education platform, where students
+                develop critical thinking, problem-solving skills, and
+                innovative mindsets that prepare them to become future leaders,
+                entrepreneurs, and change-makers in their communities and
+                beyond.
+              </p>
+            </div>
+          </div>
+
+          <!-- About ASYV -->
+          <div class="asyv-story">
+            <div class="story-content">
+              <h3 class="story-title">About Agahozo-Shalom Youth Village</h3>
+              <p class="story-text">
+                Agahozo-Shalom Youth Village (ASYV) is a residential community
+                in Rwanda for orphaned and vulnerable youth who lost family in
+                the 1994 genocide against the Tutsi and its aftermath. Founded
+                in 2008, ASYV provides students with a transformative education,
+                emotional support, and practical skills needed to thrive.
+              </p>
+              <p class="story-text">
+                The STEAM Exhibition Hub represents our commitment to
+                21st-century education, where students don't just learn theories
+                but apply knowledge to create real-world solutions. Through
+                hands-on projects, mentorship, and collaborative learning, we're
+                preparing the next generation of innovators.
+              </p>
+            </div>
+            <div class="story-image">
+              <img
+                src="20240216_170055_105116.jpg"
+                alt="Students learning"
+                class="about-img"
+              />
+            </div>
+          </div>
+
+          <!-- Statistics -->
+          <div class="stats-container">
+            <div class="stat-card">
+              <div class="stat-number">500+</div>
+              <div class="stat-label">Students Enrolled</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">150+</div>
+              <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">Expert Mentors</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">15+</div>
+              <div class="stat-label">Awards Won</div>
+            </div>
+          </div>
+
+          <!-- Core Values -->
+          <div class="values-section">
+            <h3 class="values-title">Our Core Values</h3>
+            <div class="values-grid">
+              <div class="value-item">
+                <div class="value-icon">💡</div>
+                <h4 class="value-name">Innovation</h4>
+                <p class="value-desc">
+                  We encourage creative thinking and novel approaches to solving
+                  problems
+                </p>
+              </div>
+              <div class="value-item">
+                <div class="value-icon">🤝</div>
+                <h4 class="value-name">Collaboration</h4>
+                <p class="value-desc">
+                  We believe great ideas emerge when diverse minds work together
+                </p>
+              </div>
+              <div class="value-item">
+                <div class="value-icon">🌱</div>
+                <h4 class="value-name">Growth</h4>
+                <p class="value-desc">
+                  We support continuous learning and development for all
+                  students
+                </p>
+              </div>
+              <div class="value-item">
+                <div class="value-icon">🎓</div>
+                <h4 class="value-name">Excellence</h4>
+                <p class="value-desc">
+                  We strive for the highest standards in everything we do
+                </p>
+              </div>
+              <div class="value-item">
+                <div class="value-icon">🌍</div>
+                <h4 class="value-name">Impact</h4>
+                <p class="value-desc">
+                  We create solutions that make a difference in our community
+                </p>
+              </div>
+              <div class="value-item">
+                <div class="value-icon">⚡</div>
+                <h4 class="value-name">Resilience</h4>
+                <p class="value-desc">
+                  We embrace challenges as opportunities to learn and grow
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="contact-section">
+            <h3 class="contact-title">Get in Touch</h3>
+            <div class="contact-grid">
+              <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div class="contact-details">
+                  <h4 class="contact-label">Location</h4>
+                  <p class="contact-info">
+                    Rwamagana District, Eastern Province, Rwanda
+                  </p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <div class="contact-details">
+                  <h4 class="contact-label">Email</h4>
+                  <p class="contact-info">steam@asyv.org.rw</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">📱</div>
+                <div class="contact-details">
+                  <h4 class="contact-label">Phone</h4>
+                  <p class="contact-info">+250 788 XXX XXX</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">🌐</div>
+                <div class="contact-details">
+                  <h4 class="contact-label">Website</h4>
+                  <p class="contact-info">www.asyv.org.rw</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Project Registration Section -->
+    <section class="registration-section" id="register">
+      <div class="section-container">
+        <div class="section-header">
+          <h2 class="section-title">
+            Register Your <span class="section-title-highlight">Project</span>
+          </h2>
+          <p class="section-description">
+            Submit your innovative STEAM project for the exhibition and become
+            part of ASYV history
+          </p>
+        </div>
+
+        <div class="form-card">
+          <form id="projectForm">
+            <!-- Student Information -->
+            <div class="form-section">
+              <h3 class="form-section-title">Student Information</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="studentName">Full Name *</label>
+                  <input
+                    type="text"
+                    id="studentName"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="studentEmail">Email Address *</label>
+                  <input
+                    type="email"
+                    id="studentEmail"
+                    placeholder="your.email@asyv.org"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="studentClass">Class/Year *</label>
+                  <select id="studentClass" required>
+                    <option value="">Select your class</option>
+                    <option value="EY">EY</option>
+                    <option value="S4">Senior 4</option>
+                    <option value="S5">Senior 5</option>
+                    <option value="S6">Senior 6</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="teamMembers">Team Members</label>
+                  <input
+                    type="text"
+                    id="teamMembers"
+                    placeholder="Comma separated names"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Project Details -->
+            <div class="form-section">
+              <h3 class="form-section-title">Project Details</h3>
+              <div class="form-row">
+                <div class="form-group full-width">
+                  <label for="projectTitle">Project Title *</label>
+                  <input
+                    type="text"
+                    id="projectTitle"
+                    placeholder="Enter your project title"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="projectCategory">STEAM Category *</label>
+                  <select id="projectCategory" required>
+                    <option value="">Select category</option>
+                    <option value="science">Science</option>
+                    <option value="technology">Technology</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="arts">Arts</option>
+                    <option value="mathematics">Mathematics</option>
+                    <option value="interdisciplinary">Interdisciplinary</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exhibitionYear">Exhibition Year *</label>
+                  <select id="exhibitionYear" required>
+                    <option value="">Select year</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group full-width">
+                  <label for="projectDescription">Project Description *</label>
+                  <textarea
+                    id="projectDescription"
+                    rows="5"
+                    placeholder="Describe your project, its purpose, and key features..."
+                    required
+                  ></textarea>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group full-width">
+                  <label for="projectObjectives">Project Objectives *</label>
+                  <textarea
+                    id="projectObjectives"
+                    rows="3"
+                    placeholder="What problems does your project solve?"
+                    required
+                  ></textarea>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="materialsUsed">Materials Used</label>
+                  <input
+                    type="text"
+                    id="materialsUsed"
+                    placeholder="List main materials"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="mentorName">Mentor/Teacher</label>
+                  <input
+                    type="text"
+                    id="mentorName"
+                    placeholder="Mentor's name"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Project Media -->
+            <div class="form-section">
+              <h3 class="form-section-title">Project Media</h3>
+              <div class="form-row">
+                <div class="form-group full-width">
+                  <label for="projectImage">Project Image URL</label>
+                  <input
+                    type="url"
+                    id="projectImage"
+                    placeholder="https://example.com/image.jpg"
+                  />
+                  <small class="form-hint"
+                    >Link to an image of your project</small
+                  >
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group full-width">
+                  <label for="projectVideo">Project Video URL</label>
+                  <input
+                    type="url"
+                    id="projectVideo"
+                    placeholder="https://youtube.com/watch?v=..."
+                  />
+                  <small class="form-hint">Optional video demonstration</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="form-actions">
+              <button type="button" class="btn-secondary" onclick="resetForm()">
+                Clear Form
+              </button>
+              <button
+                type="button"
+                class="btn-primary"
+                onclick="submitProject()"
+              >
+                Submit Project
+              </button>
+            </div>
+
+            <!-- Success Message -->
+            <div
+              id="successMessage"
+              class="success-message"
+              style="display: none"
+            >
+              <div class="success-icon">✓</div>
+              <h4>Project Registered Successfully!</h4>
+              <p>
+                Your project has been added to the ASYV STEAM Exhibition
+                database
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- Recent Projects Section -->
+    <section class="projects-section" id="projects">
+      <div class="section-container">
+        <div class="section-header">
+          <h2 class="section-title">
+            Recent <span class="section-title-highlight">Projects</span>
+          </h2>
+          <p class="section-description">
+            Discover innovative STEAM projects created by ASYV students
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&h=300&fit=crop"
+                alt="Solar Powered Water Pump"
+                class="project-image"
+              />
+              <div class="project-year-badge">2025</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Solar Powered Water Pump</h3>
+              <p class="project-desc">
+                An innovative irrigation system using solar energy to pump water
+                for agricultural purposes, reducing electricity costs for local
+                farmers.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=500&h=300&fit=crop"
+                alt="Smart Waste Sorter"
+                class="project-image"
+              />
+              <div class="project-year-badge">2025</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Smart Waste Sorter</h3>
+              <p class="project-desc">
+                An automated system that uses sensors to identify and sort
+                recyclable materials, promoting environmental sustainability in
+                schools.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop"
+                alt="Student Attendance App"
+                class="project-image"
+              />
+              <div class="project-year-badge">2025</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Student Attendance App</h3>
+              <p class="project-desc">
+                A mobile application that streamlines attendance tracking using
+                QR codes, making it easier for teachers to manage classroom
+                records.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1561366557-64e4e8c4c465?w=500&h=300&fit=crop"
+                alt="Traditional Art Digital Gallery"
+                class="project-image"
+              />
+              <div class="project-year-badge">2024</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Traditional Art Digital Gallery</h3>
+              <p class="project-desc">
+                A virtual exhibition showcasing Rwandan traditional art through
+                digital media, preserving cultural heritage for future
+                generations.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?w=500&h=300&fit=crop"
+                alt="Weather Monitoring Station"
+                class="project-image"
+              />
+              <div class="project-year-badge">2024</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Weather Monitoring Station</h3>
+              <p class="project-desc">
+                A DIY weather station that collects local climate data including
+                temperature, humidity, and rainfall to help farmers plan their
+                activities.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=500&h=300&fit=crop"
+                alt="Hydroponics Garden System"
+                class="project-image"
+              />
+              <div class="project-year-badge">2024</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Hydroponics Garden System</h3>
+              <p class="project-desc">
+                A soil-free growing system that uses 90% less water than
+                traditional farming, perfect for urban agriculture and food
+                security.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 7 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500&h=300&fit=crop"
+                alt="Math Learning Game"
+                class="project-image"
+              />
+              <div class="project-year-badge">2024</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Interactive Math Learning Game</h3>
+              <p class="project-desc">
+                A gamified mobile app that makes learning mathematics fun
+                through puzzles and challenges, improving student engagement and
+                performance.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 8 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&h=300&fit=crop"
+                alt="3D Printed Prosthetic Hand"
+                class="project-image"
+              />
+              <div class="project-year-badge">2024</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">3D Printed Prosthetic Hand</h3>
+              <p class="project-desc">
+                An affordable prosthetic hand designed using 3D printing
+                technology, making assistive devices more accessible to
+                communities in need.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 9 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1573152143286-0c422b4d2175?w=500&h=300&fit=crop"
+                alt="Earthquake Resistant Building Model"
+                class="project-image"
+              />
+              <div class="project-year-badge">2023</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Earthquake Resistant Building</h3>
+              <p class="project-desc">
+                A scale model demonstrating earthquake-resistant construction
+                techniques using local materials and innovative engineering
+                principles.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 10 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=500&h=300&fit=crop"
+                alt="Biodegradable Plastic Alternative"
+                class="project-image"
+              />
+              <div class="project-year-badge">2023</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Biodegradable Plastic Alternative</h3>
+              <p class="project-desc">
+                An eco-friendly material made from cassava starch that can
+                replace single-use plastics, addressing environmental pollution
+                challenges.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 11 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?w=500&h=300&fit=crop"
+                alt="Robotics Competition Entry"
+                class="project-image"
+              />
+              <div class="project-year-badge">2023</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Line Following Robot</h3>
+              <p class="project-desc">
+                An autonomous robot that uses sensors to follow lines,
+                demonstrating programming and mechanical engineering skills in
+                robotics competitions.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 12 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=300&fit=crop"
+                alt="Musical Instrument from Recycled Materials"
+                class="project-image"
+              />
+              <div class="project-year-badge">2023</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Recycled Musical Instruments</h3>
+              <p class="project-desc">
+                Traditional Rwandan instruments recreated using recycled
+                materials, combining music, art, and environmental
+                consciousness.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 13 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=500&h=300&fit=crop"
+                alt="LED Traffic Light System"
+                class="project-image"
+              />
+              <div class="project-year-badge">2023</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Smart Traffic Light System</h3>
+              <p class="project-desc">
+                An Arduino-based traffic management system that adapts timing
+                based on traffic flow, improving road safety near schools.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 14 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=500&h=300&fit=crop"
+                alt="Data Visualization Dashboard"
+                class="project-image"
+              />
+              <div class="project-year-badge">2023</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">School Data Dashboard</h3>
+              <p class="project-desc">
+                An interactive web-based dashboard that visualizes student
+                performance data, helping teachers identify areas for
+                improvement.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 15 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1503039153293-d46c38724e18?w=500&h=300&fit=crop"
+                alt="Water Quality Testing Kit"
+                class="project-image"
+              />
+              <div class="project-year-badge">2023</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Water Quality Testing Kit</h3>
+              <p class="project-desc">
+                A portable testing kit for analyzing water safety in rural
+                communities, ensuring access to clean drinking water.
+              </p>
+            </div>
+          </div>
+
+          <!-- Project 16 -->
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=500&h=300&fit=crop"
+                alt="Augmented Reality Learning Tool"
+                class="project-image"
+              />
+              <div class="project-year-badge">2023</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">AR Science Learning Tool</h3>
+              <p class="project-desc">
+                An augmented reality application that brings science concepts to
+                life through 3D visualizations and interactive experiences.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources-section" id="resources">
+      <div class="section-container">
+        <div class="section-header">
+          <h2 class="section-title">
+            STEAM <span class="section-title-highlight">Resources</span>
+          </h2>
+          <p class="section-description">
+            Explore our comprehensive STEAM guide and connect with our
+            departments
+          </p>
+        </div>
+
+        <!-- STEAM Guiding Book -->
+        <div class="guiding-book-container">
+          <h3 class="subsection-title">STEAM Guiding Book</h3>
+          <div class="book-card">
+            <div class="book-cover">
+              <img
+                src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=600&fit=crop"
+                alt="STEAM Guide Book Cover"
+                class="book-image"
+              />
+              <div class="book-overlay">
+                <span class="book-badge">Essential Guide</span>
+              </div>
+            </div>
+            <div class="book-details">
+              <h4 class="book-title">Complete STEAM Education Guide</h4>
+              <p class="book-description">
+                A comprehensive resource for students exploring Science,
+                Technology, Engineering, Arts, and Mathematics. This guide
+                includes project ideas, best practices, and inspiration for your
+                STEAM journey at ASYV.
+              </p>
+              <div class="book-features">
+                <div class="book-feature">
+                  <span class="feature-icon">📚</span>
+                  <span>200+ Pages</span>
+                </div>
+                <div class="book-feature">
+                  <span class="feature-icon">💡</span>
+                  <span>50+ Projects</span>
+                </div>
+                <div class="book-feature">
+                  <span class="feature-icon">🎓</span>
+                  <span>Expert Tips</span>
+                </div>
+              </div>
+              <a
+                href="https://docs.google.com/document/d/1BTW8V5yE3ocvHdjtZr8BblX1kCX5WOUmX5E8enNeylo/edit?usp=sharing"
+                class="btn-read-book"
+                >Read the Guide</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- STEAM Departments (Under Resources) -->
+        <div class="departments-container">
+          <h3 class="subsection-title">Connect with STEAM Departments</h3>
+          <div class="departments-grid">
+            <!-- Science Center -->
+            <div class="department-card">
+              <div class="department-header">
+                <div class="department-icon">🔬</div>
+                <h4 class="department-name">Science Center</h4>
+              </div>
+              <p class="department-description">
+                Get support with laboratory experiments, research projects, and
+                scientific inquiries
+              </p>
+              <form
+                class="department-form"
+                onsubmit="sendDepartmentMessage(event, 'Science Center')"
+              >
+                <input
+                  type="text"
+                  placeholder="Your Name *"
+                  required
+                  class="dept-input"
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email *"
+                  required
+                  class="dept-input"
+                />
+                <textarea
+                  placeholder="Your message or concern *"
+                  rows="4"
+                  required
+                  class="dept-textarea"
+                ></textarea>
+                <button type="submit" class="btn-send-message">
+                  Send Message
+                </button>
+              </form>
+            </div>
+
+            <!-- Art Center -->
+            <div class="department-card">
+              <div class="department-header">
+                <div class="department-icon">🎨</div>
+                <h4 class="department-name">Art Center</h4>
+              </div>
+              <p class="department-description">
+                Connect with our arts team for creative projects, design
+                guidance, and artistic support
+              </p>
+              <form
+                class="department-form"
+                onsubmit="sendDepartmentMessage(event, 'Art Center')"
+              >
+                <input
+                  type="text"
+                  placeholder="Your Name *"
+                  required
+                  class="dept-input"
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email *"
+                  required
+                  class="dept-input"
+                />
+                <textarea
+                  placeholder="Your message or concern *"
+                  rows="4"
+                  required
+                  class="dept-textarea"
+                ></textarea>
+                <button type="submit" class="btn-send-message">
+                  Send Message
+                </button>
+              </form>
+            </div>
+
+            <!-- Science Department - Liquidnet -->
+            <div class="department-card">
+              <div class="department-header">
+                <div class="department-icon">⚗️</div>
+                <h4 class="department-name">Science Department</h4>
+                <p class="department-subtitle">Liquidnet Family High School</p>
+              </div>
+              <p class="department-description">
+                Reach out to the high school science department for academic
+                support and project guidance
+              </p>
+              <form
+                class="department-form"
+                onsubmit="sendDepartmentMessage(event, 'Science Department - Liquidnet')"
+              >
+                <input
+                  type="text"
+                  placeholder="Your Name *"
+                  required
+                  class="dept-input"
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email *"
+                  required
+                  class="dept-input"
+                />
+                <textarea
+                  placeholder="Your message or concern *"
+                  rows="4"
+                  required
+                  class="dept-textarea"
+                ></textarea>
+                <button type="submit" class="btn-send-message">
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      let projects = [];
+
+      // Handle department message submissions
+      function sendDepartmentMessage(event, departmentName) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = {
+          department: departmentName,
+          name: form[0].value.trim(),
+          email: form[1].value.trim(),
+          message: form[2].value.trim(),
+          timestamp: new Date().toISOString(),
+        };
+
+        console.log("Message sent to", departmentName, ":", formData);
+
+        const statusDiv = document.createElement("div");
+        statusDiv.className = "message-status success";
+        statusDiv.textContent = `✓ Your message has been sent to ${departmentName} successfully!`;
+
+        form.appendChild(statusDiv);
+
+        setTimeout(() => {
+          statusDiv.remove();
+          form.reset();
+        }, 4000);
+      }
+
+      // Handle project registration
+      function submitProject() {
+        const studentName = document.getElementById("studentName").value.trim();
+        const studentEmail = document
+          .getElementById("studentEmail")
+          .value.trim();
+        const studentClass = document.getElementById("studentClass").value;
+        const teamMembers = document.getElementById("teamMembers").value.trim();
+        const projectTitle = document
+          .getElementById("projectTitle")
+          .value.trim();
+        const projectCategory =
+          document.getElementById("projectCategory").value;
+        const exhibitionYear = document.getElementById("exhibitionYear").value;
+        const projectDescription = document
+          .getElementById("projectDescription")
+          .value.trim();
+        const projectObjectives = document
+          .getElementById("projectObjectives")
+          .value.trim();
+        const materialsUsed = document
+          .getElementById("materialsUsed")
+          .value.trim();
+        const mentorName = document.getElementById("mentorName").value.trim();
+        const projectImage = document
+          .getElementById("projectImage")
+          .value.trim();
+        const projectVideo = document
+          .getElementById("projectVideo")
+          .value.trim();
+
+        if (
+          !studentName ||
+          !studentEmail ||
+          !studentClass ||
+          !projectTitle ||
+          !projectCategory ||
+          !exhibitionYear ||
+          !projectDescription ||
+          !projectObjectives
+        ) {
+          alert("Please fill in all required fields marked with *");
+          return;
+        }
+
+        const project = {
+          id: Date.now(),
+          studentName,
+          studentEmail,
+          studentClass,
+          teamMembers,
+          projectTitle,
+          projectCategory,
+          exhibitionYear,
+          projectDescription,
+          projectObjectives,
+          materialsUsed,
+          mentorName,
+          projectImage,
+          projectVideo,
+          submittedDate: new Date().toISOString(),
+        };
+
+        projects.push(project);
+
+        document.getElementById("successMessage").style.display = "block";
+        document.getElementById("successMessage").scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+
+        setTimeout(() => {
+          resetForm();
+          document.getElementById("successMessage").style.display = "none";
+        }, 3000);
+
+        console.log("Project registered:", project);
+        console.log("All projects:", projects);
+      }
+
+      // Reset project form
+      function resetForm() {
+        document.getElementById("projectForm").reset();
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
